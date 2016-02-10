@@ -1,0 +1,43 @@
+base_dir = "/Users/ajian/Baidu/Project/canary/codecenter"
+conf_dir = "conf"
+
+[loging]
+file = "conf/log.xml"
+level = 1
+
+[rest_server]
+    protocol =  'http'
+    port= 80
+    file_api_port = 1234
+    streaming_timeout = 10
+
+    [directory_server.logging]
+    level= "info"
+
+[database]
+    host = "127.0.0.1"
+    port = 3306
+    user = "root"
+    password = ""
+    database = "orp"
+    url = "%s:%s@tcp(%s:%d)/%s?charset=utf8"
+    maxOpenConnections = 100
+    maxIdleConnections = 50
+
+[packer]
+    cache_dir= "/tmp/cache"
+    packer_dir= "/tmp/packer"
+    build_dir= "/tmp/build"
+
+[fetcher]
+    db_table = "app_ori_statu"
+    # data_dir = "/home/work/deploy/module"
+    data_dir = "/home/work/tmp/deploy"
+    # %s %s, src, dest
+    # retry 3 timeout 120 limit 20m/s createdir
+    curl_format = "curl --max-time 120 --retry 3 --retry-max-time 120 --limit-rate 20M --url %s -o %s --create-dirs"
+    # moduleName, baseName, version, baseName, version(.)
+    scm_tar_format = "ftp://getprod:getprod@getprod.scm.baidu.com/data/prod-aos/prod-64/%s/%s_%s_PD_BL/%s_%s.tar.gz"
+    # moduleName, baseName, version, baseName, version(-)
+    scm_md5_format = "ftp://getprod:getprod@getprod.scm.baidu.com/data/prod-aos/prod-64/%s/%s_%s_PD_BL/%s_%s_PD_BL.md5"
+    check_retry = 3

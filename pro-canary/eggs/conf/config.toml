@@ -1,0 +1,29 @@
+base_dir = "/Users/ajian/Baidu/Project/canary/codecenter"
+conf_dir = "conf"
+
+[loging]
+file = "conf/log.xml"
+level = 1
+
+[rest_server]
+    protocol =  'http'
+    port= 80
+    file_api_port = 1234
+    streaming_timeout = 10
+
+    [directory_server.logging]
+    level= "info"
+
+[database]
+    host = "127.0.0.1"
+    port = 3306
+    user = "root"
+    password = "12345"
+    url = "%s:%s@tcp(%s:%d)/%s?charset=utf8"
+    maxOpenConnections = 100
+    maxIdleConnections = 50
+
+[packer]
+    fetcher_dir= "/tmp/fetcher"
+    builder_dir= "/tmp/builder"
+    packer_dir= "/tmp/packer"
