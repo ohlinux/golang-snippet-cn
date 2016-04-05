@@ -39,6 +39,8 @@ func NewMultipleHostReverseProxy(reg Registry) *httputil.ReverseProxy {
         if err != nil {
             log.Print(err)
             return
+        }else{
+		
         }
         req.URL.Scheme = "http"
         req.URL.Host = name + "/" + version
@@ -69,5 +71,6 @@ func main() {
                         "serviceone/v1": {"localhost:9091"},
                         "serviceone/v2": {"localhost:9092"},
         })
+	
         log.Fatal(http.ListenAndServe(":9090", proxy))
 }
